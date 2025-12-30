@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <title>Reynald - Personal Portfolio</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="icon" href="./assets/images/logo.png" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* Blog & Portfolio images: simple zoom-on-hover (keeps layout stable and no dark tint) */
+    .blog-banner-box,
+    .project-img {
+      overflow: hidden;
+      background: transparent !important;
+    }
+    .blog-banner-box img,
+    .project-img img {
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: transform 0.35s ease, opacity 0.2s ease;
+      transform-origin: center center;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      will-change: transform;
+      background-color: transparent !important;
+      object-fit: cover;
+      filter: none !important;
+      opacity: 1 !important;
+    }
+    .blog-banner-box:hover img,
+    .project-img:hover img {
+      transform: scale(1.06);
+      filter: none !important;
+      opacity: 1 !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!--
+    - #MAIN
+  -->
+
+  <main>
+
+    <!--
+      - #SIDEBAR
+    -->
+
+    <aside class="sidebar" data-sidebar>
+
+      <div class="sidebar-info">
+
+        <figure class="avatar-box">
+          <img src="./assets/images/reynald.jpeg" alt="Reynald Abacial" width="80">
+        </figure>
+
+        <div class="info-content">
+          <h1 class="name" title="Reynald Abacial">Reynald Abacial</h1>
+
+          <p class="title">Full Stack Web Developer</p>
+        </div>
+
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Show Contacts</span>
+
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+
+      </div>
+
+      <div class="sidebar-info_more">
+
+        <div class="separator"></div>
+
+        <ul class="contacts-list">
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+
+              <a href="mailto:abacialreynald5@gmail.com" class="contact-link">abacialreynald5@gmail.com</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="phone-portrait-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Phone</p>
+
+              <a href="tel:+639126386418" class="contact-link">+63 912 638 6418</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="calendar-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Birthday</p>
+
+              <time datetime="1982-06-23">March 7, 2004</time>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Location</p>
+
+              <address>Misamis Occidental, Tangub City, Migcanaway</address>
+            </div>
+
+          </li>
+
+        </ul>
+
+        <div class="separator"></div>
+
+        <ul class="social-list">
+
+          <li class="social-item">
+            <a href="https://facebook.com/reynald.abacial.org" class="social-link" target="_blank">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://tiktok.com/@coding_404notfound" class="social-link" target="_blank">
+              <ion-icon name="logo-tiktok"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://instagram.com/ratzberry2.0" class="social-link" target="_blank">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </aside>
+
+
+
+
+
+    <!--
+      - #main-content
+    -->
+
+    <div class="main-content">
+
+      <!--
+        - #NAVBAR
+      -->
+
+      <nav class="navbar">
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <a href="/main.html" class="navbar-link">Home</a>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link active" data-nav-link>About</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Resume</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Portfolio</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Blog</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Contact</button>
+          </li>
+
+        </ul>
+
+      </nav>
+
+
+
+
+
+      <!--
+        - #ABOUT
+      -->
+
+      <article class="about  active" data-page="about">
+
+        <header>
+          <h2 class="h2 article-title">About me</h2>
+        </header>
+
+        <section class="about-text">
+          <p>
+            I’m a programmer who loves turning ideas into working code. I enjoy 
+            solving problems, building useful applications, 
+            and always learning new technologies to improve my skills.
+          </p>
+
+          <p>
+            My job is to build your website so that it is functional and user-friendly but at the same time attractive.
+            Moreover, I
+            add personal touch to your product and make sure that is eye catching and easy to use. My aim is to bring
+            across your
+            message and identity in the most creative way. I created web design for many famous brand companies.
+          </p>
+        </section>
+
+
+        <!--
+          - service
+        -->
+
+        <section class="service">
+
+          <h3 class="h3 service-title">What i'm doing</h3>
+
+          <ul class="service-list">
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-design.svg
+                " alt="design icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Web design</h4>
+
+                <p class="service-item-text">
+                  The most modern and high-quality design made at a professional level.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-dev.svg" alt="Web development icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Web development</h4>
+
+                <p class="service-item-text">
+                  High-quality development of sites at the professional level.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-app.svg" alt="mobile app icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Mobile apps</h4>
+
+                <p class="service-item-text">
+                  Professional development of applications for iOS and Android.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-photo.svg" alt="camera icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Photography</h4>
+
+                <p class="service-item-text">
+                  I make high-quality photos of any category at a professional level.
+                </p>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </section>
+
+
+
+
+
+        <!--
+          - testimonials modal
+        -->
+
+        <div class="modal-container" data-modal-container>
+
+          <div class="overlay" data-overlay></div>
+
+          <section class="testimonials-modal">
+
+            <button class="modal-close-btn" data-modal-close-btn>
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+
+            <div class="modal-img-wrapper">
+              <figure class="modal-avatar-box">
+                <img src="./assets/images/reynald.jpeg" alt="" width="80" data-modal-img>
+              </figure>
+
+              <img src="./assets/images/icon-quote.svg" alt="quote icon">
+            </div>
+
+            <div class="modal-content">
+
+              <h4 class="h3 modal-title" data-modal-title>Reynald Abacial</h4>
+
+              <time datetime="2021-06-14">Dec 24, 2025</time>
+
+              <div data-modal-text>
+                <p>
+                  
+                </p>
+              </div>
+
+            </div>
+
+          </section>
+
+        </div>
+
+
+
+      </article>
+
+
+
+
+
+ <!--
+  - #RESUME
+-->
+
+      <article class="resume" data-page="resume">
+
+        <header>
+          <h2 class="h2 article-title">Resume</h2>
+        </header>
+
+        <!-- EDUCATION SECTION -->
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="school-outline"></ion-icon>
+            </div>
+            <h3 class="h3">Education</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Bachelor of Science in Information Technology</h4>
+              <span>2022 — 2026</span>
+              <p class="timeline-text">
+                Northwestern Mindanao State College of Science and Technology<br>
+                Labuyo, Tangub City
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Junior and Senior High School</h4>
+              <span>2016 — 2022</span>
+              <p class="timeline-text">
+                Tangub City National High School<br>
+                Tangub City
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Elementary Education</h4>
+              <span>2010 — 2016</span>
+              <p class="timeline-text">
+                Tangub City Central Elementary School<br>
+                Tangub City
+              </p>
+            </li>
+
+          </ol>
+
+        </section>
+
+        <!-- TRAINING PROGRAMS SECTION -->
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="ribbon-outline"></ion-icon>
+            </div>
+            <h3 class="h3">Training Programs</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">CyberCONNECT: (DICT Region 10) Capture the Flag (CTF)</h4>
+              <span>August 30-31, 2025</span>
+              <p class="timeline-text">
+                Participated in cybersecurity competition organized by DICT Region 10
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Region 10 Start up Awareness Roadshow</h4>
+              <span>2025</span>
+              <p class="timeline-text">
+                Entrepreneurship and startup awareness program
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">DICT Region 10 – Digital Transformation & ICT Industry Initiatives</h4>
+              <span>2024</span>
+              <p class="timeline-text">
+                Digital transformation and ICT industry training program
+              </p>
+            </li>
+
+          </ol>
+
+        </section>
+
+        <!-- ACHIEVEMENTS & AWARDS SECTION -->
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="trophy-outline"></ion-icon>
+            </div>
+            <h3 class="h3">Achievements & Awards</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Dean's Lister</h4>
+              <span>2022 — 2025</span>
+              <p class="timeline-text">
+                • 2022-2023: 1st and 2nd Semester<br>
+                • 2023-2024: 1st and 2nd Semester<br>
+                • 2024-2025: 1st and 2nd Semester
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">CyberCONNECT: (DICT Region 10) Capture the Flag</h4>
+              <span>2025</span>
+              <p class="timeline-text">
+                1st Runner Up - Cybersecurity competition
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">TOPCIT – Level 1</h4>
+              <span>2024</span>
+              <p class="timeline-text">
+                Test of Practical Competency in IT - Level 1 Certified
+              </p>
+            </li>
+
+          </ol>
+
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section class="skill">
+
+          <h3 class="h3 skills-title">My Skills</h3>
+
+          <ul class="skills-list content-card">
+
+            <li class="skills-item">
+              <div class="title-wrapper">
+                <h5 class="h5">Full Stack Web Development</h5>
+                <data value="85">85%</data>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 85%;"></div>
+              </div>
+            </li>
+
+            <li class="skills-item">
+              <div class="title-wrapper">
+                <h5 class="h5">Web Design</h5>
+                <data value="80">85%</data>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 85%;"></div>
+              </div>
+            </li>
+
+            <li class="skills-item">
+              <div class="title-wrapper">
+                <h5 class="h5">Computer Networking</h5>
+                <data value="75">80%</data>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 80%;"></div>
+              </div>
+            </li>
+
+          </ul>
+
+        </section>
+
+      </article>
+
+
+
+
+      <!--
+        - #PORTFOLIO
+      -->
+
+      <article class="portfolio" data-page="portfolio">
+
+        <header>
+          <h2 class="h2 article-title">Portfolio</h2>
+        </header>
+
+        <section class="projects">
+
+          <ul class="filter-list">
+
+            <li class="filter-item">
+              <button class="active" data-filter-btn>All</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Web design</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Applications</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Web development</button>
+            </li>
+
+          </ul>
+
+          <div class="filter-select-box">
+
+            <button class="filter-select" data-select>
+
+              <div class="select-value" data-selecct-value>Select category</div>
+
+              <div class="select-icon">
+                <ion-icon name="chevron-down"></ion-icon>
+              </div>
+
+            </button>
+
+            <ul class="select-list">
+
+              <li class="select-item">
+                <button data-select-item>All</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Web design</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Applications</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Web development</button>
+              </li>
+
+            </ul>
+
+          </div>
+
+          <ul class="project-list">
+
+            <li class="project-item  active" data-filter-item data-category="web development">
+              <a href="#">
+
+                <figure class="project-img">
+                  <img src="./assets/images/image.png" alt="finance" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Landing Page</h3>
+
+                <p class="project-category">Web development</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="web development">
+              <a href="#">
+
+                <figure class="project-img">
+                  <img src="./assets/images/admin.png" alt="orizon" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Admin Dashboard</h3>
+
+                <p class="project-category">Web development</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="web design">
+              <a href="#">
+
+                <figure class="project-img">
+                  <img src="./assets/images/house.png" alt="fundo" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">House Renting</h3>
+
+                <p class="project-category">Web design</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="applications">
+              <a href="#">
+
+                <figure class="project-img">
+                  <img src="./assets/images/health.png" alt="brawlhalla" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Health Monitoring</h3>
+
+                <p class="project-category">Applications</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="web design">
+              <a href="#">
+
+                <figure class="project-img">
+                  <img src="./assets/images/sale.png" alt="dsm." loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Sound & Stride</h3>
+
+                <p class="project-category">Web design</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="web design">
+              <a href="#">
+
+                <figure class="project-img">
+                  <img src="./assets/images/metaspark.png" alt="metaspark" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">MetaSpark</h3>
+
+                <p class="project-category">Web design</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="web development">
+              <a href="#">
+
+                <figure class="project-img">
+                  <img src="./assets/images/report.png" alt="summary" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Reports & Analytics</h3>
+
+                <p class="project-category">Web development</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="applications">
+              <a href="#">
+
+                <figure class="project-img">
+                  <img src="./assets/images/project.png" alt="task manager" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Mobile Game</h3>
+
+                <p class="project-category">Applications</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="web development">
+              <a href="#">
+
+                <figure class="project-img">
+                  <img src="./assets/images/arrival.png" alt="arrival" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Arrival</h3>
+
+                <p class="project-category">Web development</p>
+
+              </a>
+            </li>
+
+          </ul>
+
+        </section>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #BLOG
+      -->
+
+      <article class="blog" data-page="blog">
+
+        <header>
+          <h2 class="h2 article-title">Blog</h2>
+        </header>
+
+        <section class="blog-posts">
+
+          <ul class="blog-posts-list">
+
+            <li class="blog-post-item">
+              <a href="#">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog1.jpeg" alt="Design conferences in 2022" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Hosting</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2022-02-23">Dec 22, 2025</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">Hosting our Capstone Project</h3>
+
+                  <p class="blog-text">
+                    Hosting a web-based Recruitment and Applicant Tracking System for a J&T Express.
+                  </p>
+
+                </div>
+
+              </a>
+            </li>
+
+            <li class="blog-post-item">
+              <a href="#">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog2.jpeg" alt="Best fonts every designer" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">CYBERCONNECT</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2022-02-23">Aug 31, 2025</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">Join Competition</h3>
+
+                  <p class="blog-text">
+                    I've join a competition organized by DICT Region 10 to capture the flag (CTF).
+                  </p>
+
+                </div>
+
+              </a>
+            </li>
+
+            <li class="blog-post-item">
+              <a href="#">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog3.jpeg" alt="Design digest #80" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Capture the Flag (CTF)</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2022-02-23">Aug 31, 2025</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">Software Engineer Code</h3>
+
+                  <p class="blog-text">
+                    Capturing the flag in the CTF competition.
+                  </p>
+
+                </div>
+
+              </a>
+            </li>
+
+            <li class="blog-post-item">
+              <a href="#">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog4.jpeg" alt="UI interactions of the week" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Exam</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2022-02-23">Jun 02, 2025</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">TOPCIT Exam</h3>
+
+                  <p class="blog-text">
+                    I've take the TOPCIT Exam and reach the level 1 certificate.
+                  </p>
+
+                </div>
+
+              </a>
+            </li>
+
+            <li class="blog-post-item">
+              <a href="#">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog5.jpeg" alt="The forgotten art of spacing" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Study</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2022-02-23">May 28, 2025</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">Taking a note of the exam</h3>
+
+                  <p class="blog-text">
+                    I've study the major exam and take notes.
+                  </p>
+
+                </div>
+
+              </a>
+            </li>
+
+            <li class="blog-post-item">
+              <a href="#">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog6.jpeg" alt="Design digest #79" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Implementation</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2022-02-23">Feb 23, 2022</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">Create a project</h3>
+
+                  <p class="blog-text">
+                    Creating a Website for my client using HTML, CSS, and JavaScript.
+                  </p>
+
+                </div>
+
+              </a>
+            </li>
+
+          </ul>
+
+        </section>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #CONTACT
+      -->
+
+      <article class="contact" data-page="contact">
+
+        <header>
+          <h2 class="h2 article-title">Contact</h2>
+        </header>
+
+        <section class="mapbox" data-mapbox>
+          <figure>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3947.123456789012!2d123.7538676!3d8.0573613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32544cf42e64c96d%3A0x25a5d6e22c078b71!2sMigcanaway%2C%20Tangub%20City%2C%20Misamis%20Occidental!5e0!3m2!1sen!2sph!4v1734912000000!5m2!1sen!2sph" 
+              width="400" height="300" loading="lazy"></iframe>
+          </figure>
+        </section>
+
+        <section class="contact-form">
+          <h3 class="h3 form-title">Contact Form</h3>
+
+          <!-- The form posts to the local Express endpoint. When running the server, open http://localhost:3000 -->
+          <form action="#" method="POST" class="form" data-form id="contactForm">
+            <div class="input-wrapper">
+              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
+              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+            </div>
+
+            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+
+            <button class="form-btn" type="submit" disabled data-form-btn>
+              <ion-icon name="paper-plane"></ion-icon>
+              <span>Send Message</span>
+            </button>
+          </form>
+        </section>
+
+        <!-- Simple Notification -->
+        <div id="simpleNotification" style="display: none; position: fixed; top: 20px; right: 20px; background: #4CAF50; color: white; padding: 15px 25px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 1000; animation: slideIn 0.3s ease-out;">
+          ✓ Message sent successfully!
+        </div>
+
+        <style>
+          .form-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+          }
+          
+          .form-btn:not(:disabled) {
+            cursor: pointer;
+          }
+          
+          .form-input:invalid {
+            border-color: #ff6b6b;
+          }
+          
+          .form-input:valid {
+            border-color: #51cf66;
+          }
+          
+          @keyframes slideIn {
+            from {
+              transform: translateX(100%);
+              opacity: 0;
+            }
+            to {
+              transform: translateX(0);
+              opacity: 1;
+            }
+          }
+          
+          @keyframes slideOut {
+            from {
+              transform: translateX(0);
+              opacity: 1;
+            }
+            to {
+              transform: translateX(100%);
+              opacity: 0;
+            }
+          }
+
+          /* Small styles for confirmation checkbox and note */
+          .form-note { font-size:0.95rem; color:#666; margin-top:0.5rem; }
+        </style>
+
+        <script type="module">
+          import 'https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js';
+          
+          const form = document.querySelector('[data-form]');
+          const inputs = document.querySelectorAll('[data-form-input]');
+          const submitBtn = document.querySelector('[data-form-btn]');
+          const notification = document.getElementById('simpleNotification');
+          
+          // Client now POSTs to the local Express API endpoint
+          const API_ENDPOINT = '/api/send-email';
+
+          function checkFormValidity() {
+            let isFormValid = true;
+            inputs.forEach(input => {
+              if (!input.checkValidity()) {
+                isFormValid = false;
+              }
+            });
+            submitBtn.disabled = !isFormValid;
+            return isFormValid;
+          }
+
+          function showNotification(message = 'Message sent successfully!', isError = false) {
+            notification.textContent = (isError ? '⚠️ ' : '✓ ') + message;
+            notification.style.background = isError ? '#ff6b6b' : '#4CAF50';
+            notification.style.display = 'block';
+            notification.style.animation = 'slideIn 0.3s ease-out';
+            setTimeout(() => {
+              notification.style.animation = 'slideOut 0.3s ease-out';
+              setTimeout(() => {
+                notification.style.display = 'none';
+              }, 300);
+            }, 3000);
+          }
+
+          inputs.forEach(input => {
+            input.addEventListener('input', checkFormValidity);
+            input.addEventListener('blur', checkFormValidity);
+          });
+
+          form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!checkFormValidity()) return;
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+              <ion-icon name="hourglass"></ion-icon>
+              <span>Sending...</span>
+            `;
+            try {
+              const formData = new FormData(form);
+              const payload = {
+                fullname: formData.get('fullname'),
+                email: formData.get('email'),
+                message: formData.get('message')
+              };
+              const res = await fetch(API_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              if (res.ok) {
+                showNotification();
+                form.reset();
+                checkFormValidity();
+                submitBtn.innerHTML = originalText;
+              } else {
+                const data = await res.json().catch(()=>({}));
+                console.error('Send error', data);
+                showNotification('Failed to send message. Please try again later.', true);
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+              }
+            } catch (err) {
+              console.error('Network error', err);
+              showNotification('Network error. Check your connection.', true);
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = originalText;
+            }
+          });
+
+          checkFormValidity();
+        </script>
+
+      </article>
+
+    </div>
+
+  </main>
+
+  <!--
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!--
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

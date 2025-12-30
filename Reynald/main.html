@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>Reynald Abacial - Personal Portfolio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="icon" href="./assets/images/logo.png" type="image/x-icon">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 62.5%;
+            height: 100%;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            perspective: 1000px;
+            font-size: 1.6rem;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            touch-action: pan-x pan-y;
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container-3d {
+            position: relative;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(1rem, 3vw, 2rem);
+            transform-style: preserve-3d;
+            overflow: hidden;
+        }
+
+        .content-3d {
+            position: relative;
+            width: 100%;
+            max-width: min(1200px, 95vw);
+            transform-style: preserve-3d;
+            animation: float 6s ease-in-out infinite;
+            padding: clamp(1rem, 2vw, 2rem);
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px) rotateX(0deg); 
+            }
+            50% { 
+                transform: translateY(clamp(-10px, -1vw, -20px)) rotateX(5deg); 
+            }
+        }
+
+        .logo-orb {
+            width: clamp(18rem, 30vw, 30rem);
+            height: clamp(18rem, 30vw, 30rem);
+            margin: 0 auto clamp(3rem, 5vw, 6rem);
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate 20s infinite linear;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotateY(0deg) rotateX(10deg); }
+            100% { transform: rotateY(360deg) rotateX(10deg); }
+        }
+
+        .orb-inner {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+
+        .orb-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: clamp(0.2rem, 0.3vw, 0.3rem) solid rgba(0, 247, 255, 0.3);
+            transform: rotateX(70deg);
+            animation: pulse 4s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                opacity: 0.3; 
+                transform: rotateX(70deg) scale(1); 
+            }
+            50% { 
+                opacity: 0.6; 
+                transform: rotateX(70deg) scale(1.1); 
+            }
+        }
+
+        .orb-ring:nth-child(2) {
+            transform: rotateX(70deg) rotateY(60deg);
+            border-color: rgba(255, 0, 255, 0.3);
+            animation-delay: 1s;
+        }
+
+        .orb-ring:nth-child(3) {
+            transform: rotateX(70deg) rotateY(120deg);
+            border-color: rgba(0, 255, 200, 0.3);
+            animation-delay: 2s;
+        }
+
+        .logo-image {
+            position: absolute;
+            width: clamp(10rem, 18vw, 18rem);
+            height: clamp(10rem, 18vw, 18rem);
+            border-radius: 50%;
+            overflow: hidden;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: clamp(0.2rem, 0.3vw, 0.3rem) solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 
+                0 0 clamp(3rem, 5vw, 5rem) rgba(0, 247, 255, 0.5),
+                inset 0 0 clamp(2rem, 3vw, 3rem) rgba(255, 255, 255, 0.1);
+            z-index: 10;
+        }
+
+        .logo-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(1.2) contrast(1.1);
+        }
+
+        .title-3d {
+            font-size: clamp(2.4rem, 8vw, 5rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: clamp(1rem, 2vw, 2rem);
+            text-transform: uppercase;
+            letter-spacing: clamp(0.2rem, 0.4vw, 0.4rem);
+            position: relative;
+            transform-style: preserve-3d;
+            text-shadow: 
+                0 0.1rem 0 #ccc,
+                0 0.2rem 0 #999,
+                0 0.3rem 0 #666,
+                0 0.4rem 0 #333,
+                0 0.5rem 1rem rgba(0,0,0,0.5);
+            background: linear-gradient(45deg, #00f7ff, #ff00ff, #00ffc8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: textGlow 3s infinite alternate;
+            line-height: 1.1;
+            padding: 0 1rem;
+        }
+
+        @keyframes textGlow {
+            0% { 
+                text-shadow: 
+                    0 0.1rem 0 #ccc,
+                    0 0.2rem 0 #999,
+                    0 0.3rem 0 #666,
+                    0 0.4rem 0 #333,
+                    0 0.5rem 1rem rgba(0,0,0,0.5),
+                    0 0 2rem rgba(0, 247, 255, 0.5); 
+            }
+            100% { 
+                text-shadow: 
+                    0 0.1rem 0 #ccc,
+                    0 0.2rem 0 #999,
+                    0 0.3rem 0 #666,
+                    0 0.4rem 0 #333,
+                    0 0.5rem 1rem rgba(0,0,0,0.5),
+                    0 0 4rem rgba(0, 247, 255, 0.8); 
+            }
+        }
+
+        .portfolio-of {
+            display: block;
+            text-align: center;
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            color: #a0a0a0;
+            margin: clamp(0.5rem, 1vw, 1rem) 0 clamp(2rem, 4vw, 5rem);
+            text-transform: uppercase;
+            letter-spacing: clamp(0.1rem, 0.2vw, 0.2rem);
+            position: relative;
+            transform: translateZ(20px);
+        }
+
+        .subtitle-3d {
+            font-size: clamp(1.4rem, 3.5vw, 1.8rem);
+            text-align: center;
+            margin-bottom: clamp(2rem, 4vw, 4rem);
+            color: #a0a0a0;
+            letter-spacing: clamp(0.1rem, 0.3vw, 0.3rem);
+            text-transform: uppercase;
+            position: relative;
+            transform: translateZ(30px);
+            padding: 0 1rem;
+        }
+
+        .btn-3d-container {
+            position: relative;
+            width: clamp(20rem, 30vw, 30rem);
+            height: clamp(7rem, 10vw, 10rem);
+            margin: clamp(4rem, 8vw, 8rem) auto;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .btn-3d {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #1a1a1a, #000000);
+            border: none;
+            border-radius: clamp(1.5rem, 2vw, 2rem);
+            font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: clamp(0.1rem, 0.2vw, 0.2rem);
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transform: translateZ(0);
+            transition: all 0.3s ease;
+            box-shadow: 
+                inset 0 -0.8rem 0 rgba(0, 0, 0, 0.5),
+                inset 0 0.8rem 0 rgba(255, 255, 255, 0.1),
+                0 2rem 4rem rgba(0, 0, 0, 0.8);
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .btn-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: clamp(1.5rem, 2vw, 2rem);
+            background: linear-gradient(145deg, #333, #000);
+            transform: translateZ(-20px);
+            transition: all 0.3s ease;
+        }
+
+        .btn-3d:hover {
+            transform: translateZ(10px);
+            background: linear-gradient(145deg, #000, #1a1a1a);
+            box-shadow: 
+                inset 0 -0.8rem 0 rgba(0, 0, 0, 0.5),
+                inset 0 0.8rem 0 rgba(255, 255, 255, 0.2),
+                0 3rem 6rem rgba(0, 247, 255, 0.3);
+        }
+
+        .btn-3d:active {
+            transform: translateZ(5px);
+            box-shadow: 
+                inset 0 -0.4rem 0 rgba(0, 0, 0, 0.5),
+                inset 0 0.4rem 0 rgba(255, 255, 255, 0.1),
+                0 1rem 2rem rgba(0, 0, 0, 0.5);
+        }
+
+        @media (hover: none) {
+            .btn-3d:active {
+                transform: translateZ(5px);
+                box-shadow: 
+                    inset 0 -0.4rem 0 rgba(0, 0, 0, 0.5),
+                    inset 0 0.4rem 0 rgba(255, 255, 255, 0.1),
+                    0 1rem 2rem rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        .btn-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(1rem, 1.5vw, 1.5rem);
+            height: 100%;
+            width: 100%;
+        }
+
+        .cubes-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: clamp(3rem, 10vw, 10rem);
+            margin-top: clamp(6rem, 10vw, 10rem);
+            transform-style: preserve-3d;
+            flex-wrap: wrap;
+        }
+
+        .cube {
+            width: clamp(10rem, 15vw, 15rem);
+            height: clamp(10rem, 15vw, 15rem);
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(-20deg) rotateY(-20deg);
+            animation: cubeFloat 8s infinite ease-in-out;
+            margin: 1rem;
+        }
+
+        @keyframes cubeFloat {
+            0%, 100% { 
+                transform: rotateX(-20deg) rotateY(-20deg) translateY(0); 
+            }
+            50% { 
+                transform: rotateX(-20deg) rotateY(-20deg) translateY(clamp(-2rem, -3vw, -3rem)); 
+            }
+        }
+
+        .cube:nth-child(2) {
+            animation-delay: 2s;
+        }
+
+        .cube:nth-child(3) {
+            animation-delay: 4s;
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            border: clamp(0.1rem, 0.15vw, 0.15rem) solid rgba(0, 247, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(1rem, 1.5vw, 2rem);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 0.5rem;
+        }
+
+        .cube-face.front  { transform: rotateY(0deg) translateZ(calc(clamp(10rem, 15vw, 15rem) / 2)); }
+        .cube-face.back   { transform: rotateY(180deg) translateZ(calc(clamp(10rem, 15vw, 15rem) / 2)); }
+        .cube-face.right  { transform: rotateY(90deg) translateZ(calc(clamp(10rem, 15vw, 15rem) / 2)); }
+        .cube-face.left   { transform: rotateY(-90deg) translateZ(calc(clamp(10rem, 15vw, 15rem) / 2)); }
+        .cube-face.top    { transform: rotateX(90deg) translateZ(calc(clamp(10rem, 15vw, 15rem) / 2)); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(clamp(10rem, 15vw, 15rem) / 2)); }
+
+        .cube-icon {
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            margin-bottom: clamp(0.5rem, 1vw, 1rem);
+            color: #00f7ff;
+        }
+
+        .cube-title {
+            font-size: clamp(0.8rem, 1.2vw, 1rem);
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.3;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        .particle {
+            position: absolute;
+            width: clamp(0.2rem, 0.4vw, 0.4rem);
+            height: clamp(0.2rem, 0.4vw, 0.4rem);
+            background: #00f7ff;
+            border-radius: 50%;
+            box-shadow: 0 0 1rem #00f7ff, 0 0 2rem #00f7ff;
+            animation: particleFloat linear infinite;
+        }
+
+        @keyframes particleFloat {
+            to { 
+                transform: translateY(-100vh) translateX(calc(100vw * var(--random-x, 1))) rotate(360deg); 
+            }
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            .cube {
+                animation: cubeFloatMobile 8s infinite ease-in-out;
+            }
+            
+            @keyframes cubeFloatMobile {
+                0%, 100% { 
+                    transform: rotateX(-15deg) rotateY(-15deg) translateY(0); 
+                }
+                50% { 
+                    transform: rotateX(-15deg) rotateY(-15deg) translateY(-1.5rem); 
+                }
+            }
+            
+            .content-3d {
+                animation: floatMobile 6s ease-in-out infinite;
+            }
+            
+            @keyframes floatMobile {
+                0%, 100% { 
+                    transform: translateY(0px) rotateX(0deg); 
+                }
+                50% { 
+                    transform: translateY(-5px) rotateX(3deg); 
+                }
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cubes-container {
+                gap: clamp(2rem, 5vw, 5rem);
+                margin-top: clamp(4rem, 8vw, 8rem);
+            }
+            
+            .cube {
+                width: clamp(8rem, 12vw, 12rem);
+                height: clamp(8rem, 12vw, 12rem);
+            }
+            
+            .cube-face.front,
+            .cube-face.back,
+            .cube-face.right,
+            .cube-face.left,
+            .cube-face.top,
+            .cube-face.bottom {
+                transform-origin: center;
+            }
+            
+            .btn-3d {
+                font-size: clamp(1rem, 1.4vw, 1.2rem);
+            }
+        }
+
+        @media (max-height: 600px) and (orientation: landscape) {
+            .container-3d {
+                min-height: auto;
+                padding: 1rem;
+            }
+            
+            .logo-orb {
+                width: clamp(10rem, 20vh, 15rem);
+                height: clamp(10rem, 20vh, 15rem);
+                margin-bottom: 2rem;
+            }
+            
+            .logo-image {
+                width: clamp(6rem, 12vh, 9rem);
+                height: clamp(6rem, 12vh, 9rem);
+            }
+            
+            .title-3d {
+                font-size: clamp(1.8rem, 4vh, 2.5rem);
+                margin-bottom: 0.5rem;
+            }
+            
+            .portfolio-of {
+                font-size: clamp(1rem, 2vh, 1.2rem);
+                margin: 0.2rem 0 1rem;
+            }
+            
+            .subtitle-3d {
+                font-size: clamp(1rem, 2vh, 1.4rem);
+                margin-bottom: 1.5rem;
+            }
+            
+            .btn-3d-container {
+                width: clamp(15rem, 30vh, 20rem);
+                height: clamp(5rem, 8vh, 6rem);
+                margin: 2rem auto;
+            }
+            
+            .cubes-container {
+                margin-top: 2rem;
+                gap: 2rem;
+            }
+            
+            .cube {
+                width: 6rem;
+                height: 6rem;
+            }
+            
+            .cube-icon {
+                font-size: 1.2rem;
+            }
+            
+            .cube-title {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cubes-container {
+                flex-direction: column;
+                gap: clamp(3rem, 8vh, 8rem);
+            }
+            
+            .cube {
+                width: clamp(12rem, 25vw, 15rem);
+                height: clamp(12rem, 25vw, 15rem);
+            }
+            
+            .title-3d {
+                font-size: clamp(2rem, 6vw, 2.4rem);
+                letter-spacing: 0.2rem;
+            }
+            
+            .subtitle-3d {
+                font-size: clamp(1.1rem, 3vw, 1.4rem);
+                letter-spacing: 0.2rem;
+            }
+            
+            .btn-3d-container {
+                width: clamp(18rem, 80vw, 25rem);
+                height: clamp(6rem, 12vw, 8rem);
+            }
+        }
+
+        @media (max-width: 320px) {
+            .container-3d {
+                padding: 0.5rem;
+            }
+            
+            .logo-orb {
+                width: 15rem;
+                height: 15rem;
+            }
+            
+            .logo-image {
+                width: 9rem;
+                height: 9rem;
+            }
+            
+            .title-3d {
+                font-size: 1.8rem;
+            }
+            
+            .portfolio-of {
+                font-size: 1rem;
+            }
+            
+            .subtitle-3d {
+                font-size: 1rem;
+            }
+            
+            .cube {
+                width: 10rem;
+                height: 10rem;
+            }
+            
+            .btn-3d-container {
+                width: 16rem;
+                height: 6rem;
+            }
+        }
+
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .particle {
+                width: 0.3rem;
+                height: 0.3rem;
+            }
+            
+            .orb-ring {
+                border-width: 0.15rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .content-3d,
+            .logo-orb,
+            .orb-ring,
+            .title-3d,
+            .cube,
+            .particle {
+                animation: none !important;
+                transition: none !important;
+            }
+            
+            .content-3d {
+                animation: none;
+            }
+            
+            .btn-3d:hover,
+            .btn-3d:active {
+                transform: none;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #000;
+            }
+        }
+
+        @media print {
+            .particles,
+            #bg-canvas,
+            .btn-3d,
+            .cube {
+                display: none !important;
+            }
+            
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .title-3d {
+                background: none;
+                -webkit-background-clip: initial;
+                background-clip: initial;
+                color: black;
+                text-shadow: none;
+            }
+        }
+
+        @supports (padding: max(0px)) {
+            .container-3d {
+                padding-left: max(clamp(1rem, 3vw, 2rem), env(safe-area-inset-left));
+                padding-right: max(clamp(1rem, 3vw, 2rem), env(safe-area-inset-right));
+                padding-top: max(clamp(1rem, 3vw, 2rem), env(safe-area-inset-top));
+                padding-bottom: max(clamp(1rem, 3vw, 2rem), env(safe-area-inset-bottom));
+            }
+        }
+
+        .loading {
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+    
+    <div class="particles" id="particles"></div>
+
+    <div class="container-3d">
+        <div class="content-3d loading">
+            <div class="logo-orb">
+                <div class="orb-inner">
+                    <div class="orb-ring"></div>
+                    <div class="orb-ring"></div>
+                    <div class="orb-ring"></div>
+                    <div class="logo-image">
+                        <img 
+                            src="./assets/images/logo.png" 
+                            alt="Reynald Abacial" 
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://via.placeholder.com/180/0a0a0a/00f7ff?text=RA'; this.classList.add('loaded')"
+                            class="logo-img"
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <h1 class="title-3d">Web Developer</h1>
+            <span class="portfolio-of"></span>
+            <h2 class="subtitle-3d"></h2>
+
+            <div class="btn-3d-container">
+                <button class="btn-3d" id="exploreBtn" aria-label="Explore Portfolio">
+                    <div class="btn-content">
+                        <span>About me</span>
+                    </div>
+                </button>
+            </div>
+
+            <div class="cubes-container">
+                <div class="cube" id="cube1" role="img" aria-label="Frontend Development Cube">
+                    <div class="cube-face front">
+                        <ion-icon name="code-slash" class="cube-icon" aria-hidden="true"></ion-icon>
+                        <div class="cube-title">Frontend</div>
+                    </div>
+                    <div class="cube-face top">
+                        <ion-icon name="code-slash" class="cube-icon" aria-hidden="true"></ion-icon>
+                    </div>
+                    <div class="cube-face bottom"></div>
+                </div>
+
+                <div class="cube" id="cube2" role="img" aria-label="Backend Development Cube">
+                    <div class="cube-face front">
+                        <ion-icon name="server" class="cube-icon" aria-hidden="true"></ion-icon>
+                        <div class="cube-title">Backend</div>
+                    </div>
+                    <div class="cube-face top">
+                        <ion-icon name="server" class="cube-icon" aria-hidden="true"></ion-icon>
+                    </div>
+                    <div class="cube-face bottom"></div>
+                </div>
+
+                <div class="cube" id="cube3" role="img" aria-label="Full Stack Development Cube">
+                    <div class="cube-face front">
+                        <ion-icon name="layers" class="cube-icon" aria-hidden="true"></ion-icon>
+                        <div class="cube-title">Full Stack</div>
+                    </div>
+                    <div class="cube-face top">
+                        <ion-icon name="layers" class="cube-icon" aria-hidden="true"></ion-icon>
+                    </div>
+                    <div class="cube-face bottom"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const CONFIG = {
+            performance: {
+                particleCount: {
+                    desktop: 5000,
+                    mobile: 2000,
+                    lowEnd: 1000
+                },
+                starCount: {
+                    desktop: 2000,
+                    mobile: 800,
+                    lowEnd: 400
+                }
+            },
+            animations: {
+                enabled: !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            }
+        };
+
+        function getPerformanceTier() {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const isLowEnd = navigator.hardwareConcurrency <= 2 || 
+                           (navigator.deviceMemory && navigator.deviceMemory <= 2);
+            
+            if (isLowEnd) return 'lowEnd';
+            if (isMobile) return 'mobile';
+            return 'desktop';
+        }
+
+        let scene, camera, renderer, particles, stars;
+        let isInitialized = false;
+        let resizeTimeout;
+
+        async function init3DBackground() {
+            if (isInitialized) return;
+            
+            try {
+                const performanceTier = getPerformanceTier();
+                
+                scene = new THREE.Scene();
+                
+                camera = new THREE.PerspectiveCamera(
+                    75, 
+                    window.innerWidth / window.innerHeight, 
+                    0.1, 
+                    1000
+                );
+                camera.position.z = 5;
+                
+                const canvas = document.getElementById('bg-canvas');
+                if (!canvas) return;
+                
+                renderer = new THREE.WebGLRenderer({ 
+                    canvas: canvas,
+                    alpha: true,
+                    antialias: performanceTier === 'desktop',
+                    powerPreference: 'high-performance'
+                });
+                
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, performanceTier === 'desktop' ? 2 : 1));
+                renderer.setClearColor(0x000000, 0);
+                
+                const particleCount = CONFIG.performance.particleCount[performanceTier];
+                const starCount = CONFIG.performance.starCount[performanceTier];
+            
+                const particlesGeometry = new THREE.BufferGeometry();
+                const positions = new Float32Array(particleCount * 3);
+                
+                for(let i = 0; i < particleCount * 3; i++) {
+                    positions[i] = (Math.random() - 0.5) * (performanceTier === 'desktop' ? 100 : 50);
+                }
+                
+                particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                
+                const particlesMaterial = new THREE.PointsMaterial({
+                    size: performanceTier === 'desktop' ? 0.02 : 0.015,
+                    sizeAttenuation: true,
+                    color: 0x00f7ff,
+                    transparent: true,
+                    opacity: performanceTier === 'desktop' ? 0.6 : 0.4,
+                    blending: THREE.AdditiveBlending
+                });
+                
+                particles = new THREE.Points(particlesGeometry, particlesMaterial);
+                scene.add(particles);
+                
+                if (performanceTier !== 'lowEnd') {
+                    const starsGeometry = new THREE.BufferGeometry();
+                    const starsPositions = new Float32Array(starCount * 3);
+                    
+                    for(let i = 0; i < starCount * 3; i++) {
+                        starsPositions[i] = (Math.random() - 0.5) * (performanceTier === 'desktop' ? 200 : 100);
+                    }
+                    
+                    starsGeometry.setAttribute('position', new THREE.BufferAttribute(starsPositions, 3));
+                    
+                    const starsMaterial = new THREE.PointsMaterial({
+                        size: performanceTier === 'desktop' ? 0.5 : 0.3,
+                        sizeAttenuation: true,
+                        color: 0xffffff,
+                        transparent: true,
+                        opacity: 0.8
+                    });
+                    
+                    stars = new THREE.Points(starsGeometry, starsMaterial);
+                    scene.add(stars);
+                }
+
+                const ambientLight = new THREE.AmbientLight(0x00f7ff, performanceTier === 'desktop' ? 0.3 : 0.2);
+                scene.add(ambientLight);
+                
+                if (performanceTier === 'desktop') {
+                    const pointLight = new THREE.PointLight(0xff00ff, 1, 100);
+                    pointLight.position.set(10, 10, 10);
+                    scene.add(pointLight);
+                }
+                
+                function animate() {
+                    if (!CONFIG.animations.enabled) {
+                        renderer.render(scene, camera);
+                        return;
+                    }
+                    
+                    requestAnimationFrame(animate);
+                    
+                    if (particles) {
+                        particles.rotation.x += 0.0005;
+                        particles.rotation.y += 0.0005;
+                    }
+                    
+                    if (stars) {
+                        stars.rotation.x += 0.0002;
+                        stars.rotation.y += 0.0003;
+                    }
+                    
+                    renderer.render(scene, camera);
+                }
+                
+                animate();
+                isInitialized = true;
+                
+            } catch (error) {
+                console.warn('3D Background failed to initialize:', error);
+                document.getElementById('bg-canvas').style.display = 'none';
+            }
+        }
+
+        function createParticles() {
+            if (!CONFIG.animations.enabled) return;
+            
+            const particlesContainer = document.getElementById('particles');
+            if (!particlesContainer) return;
+            
+            const isMobile = window.innerWidth <= 768;
+            const particleCount = isMobile ? 50 : 100;
+            
+            particlesContainer.innerHTML = '';
+            
+            for(let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                
+                const size = Math.random() * (isMobile ? 3 : 6) + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                const randomX = Math.random() * 2 - 1;
+                particle.style.setProperty('--random-x', randomX);
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                
+                const colors = ['#00f7ff', '#ff00ff', '#00ffc8'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        function setupCubeInteractions() {
+            const cubes = document.querySelectorAll('.cube');
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            
+            cubes.forEach(cube => {
+                if (isTouchDevice) {
+                    let touchStartX = 0;
+                    let touchStartY = 0;
+                    let rotationY = -20;
+                    let rotationX = -20;
+                    
+                    cube.addEventListener('touchstart', (e) => {
+                        e.preventDefault();
+                        const touch = e.touches[0];
+                        touchStartX = touch.clientX;
+                        touchStartY = touch.clientY;
+                        cube.style.animationPlayState = 'paused';
+                    });
+                    
+                    cube.addEventListener('touchmove', (e) => {
+                        e.preventDefault();
+                        const touch = e.touches[0];
+                        const deltaX = touch.clientX - touchStartX;
+                        const deltaY = touch.clientY - touchStartY;
+                        
+                        rotationY = rotationY + deltaX * 0.5;
+                        rotationX = rotationX - deltaY * 0.5;
+                        
+                        cube.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+                        
+                        touchStartX = touch.clientX;
+                        touchStartY = touch.clientY;
+                    });
+                    
+                    cube.addEventListener('touchend', () => {
+                        setTimeout(() => {
+                            cube.style.animationPlayState = 'running';
+                        }, 1000);
+                    });
+                    
+                } else {
+                    cube.addEventListener('mouseenter', () => {
+                        cube.style.animationPlayState = 'paused';
+                        
+                        let rotationY = -20;
+                        const interval = setInterval(() => {
+                            rotationY += 2;
+                            cube.style.transform = `rotateX(-20deg) rotateY(${rotationY}deg)`;
+                        }, 50);
+                        
+                        cube.dataset.interval = interval;
+                    });
+                    
+                    cube.addEventListener('mouseleave', () => {
+                        const interval = cube.dataset.interval;
+                        if (interval) clearInterval(interval);
+                        cube.style.animationPlayState = 'running';
+                    });
+                }
+            });
+        }
+
+        function setupParallax() {
+            if (!CONFIG.animations.enabled || window.innerWidth <= 768) return;
+            
+            let mouseX = 0;
+            let mouseY = 0;
+            let targetX = 0;
+            let targetY = 0;
+            
+            document.addEventListener('mousemove', (e) => {
+                targetX = (window.innerWidth / 2 - e.clientX) / 50;
+                targetY = (window.innerHeight / 2 - e.clientY) / 50;
+            });
+            
+            function updateParallax() {
+                mouseX += (targetX - mouseX) * 0.1;
+                mouseY += (targetY - mouseY) * 0.1;
+                
+                const content = document.querySelector('.content-3d');
+                if (content) {
+                    content.style.transform = `
+                        translateY(${mouseY}px)
+                        rotateY(${mouseX}deg)
+                        rotateX(${-mouseY}deg)
+                    `;
+                }
+                
+                requestAnimationFrame(updateParallax);
+            }
+            
+            updateParallax();
+        }
+
+        function setupButton() {
+            const exploreBtn = document.getElementById('exploreBtn');
+            if (!exploreBtn) return;
+            
+            exploreBtn.addEventListener('click', () => {
+                
+                exploreBtn.style.transform = 'translateZ(-20px)';
+                exploreBtn.style.boxShadow = 'inset 0 -4px 0 rgba(0, 0, 0, 0.5)';
+                
+                if ('ontouchstart' in window) {
+                    const ripple = document.createElement('div');
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(0, 247, 255, 0.3)';
+                    ripple.style.transform = 'translate(-50%, -50%) scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    ripple.style.pointerEvents = 'none';
+                    
+                    exploreBtn.appendChild(ripple);
+                    
+                    if (!document.getElementById('ripple-styles')) {
+                        const style = document.createElement('style');
+                        style.id = 'ripple-styles';
+                        style.textContent = `
+                            @keyframes ripple {
+                                to {
+                                    transform: translate(-50%, -50%) scale(4);
+                                    opacity: 0;
+                                }
+                            }
+                        `;
+                        document.head.appendChild(style);
+                    }
+                    
+                    setTimeout(() => ripple.remove(), 600);
+                }
+            
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 300);
+                
+                setTimeout(() => {
+                    exploreBtn.style.transform = '';
+                    exploreBtn.style.boxShadow = '';
+                }, 500);
+            });
+            
+            exploreBtn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    exploreBtn.click();
+                }
+            });
+        }
+
+        function handleResize() {
+            clearTimeout(resizeTimeout);
+            
+            resizeTimeout = setTimeout(() => {
+                if (camera && renderer) {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                }
+                
+                createParticles();
+
+                const cubes = document.querySelectorAll('.cube');
+                const isMobile = window.innerWidth <= 768;
+                
+                cubes.forEach(cube => {
+                    if (isMobile) {
+                        cube.style.transform = 'rotateX(-15deg) rotateY(-15deg)';
+                    } else {
+                        cube.style.transform = 'rotateX(-20deg) rotateY(-20deg)';
+                    }
+                });
+                
+            }, 250);
+        }
+
+        function setupImageLoading() {
+            const logoImg = document.querySelector('.logo-img');
+            if (!logoImg) return;
+            
+            if (logoImg.complete && logoImg.naturalHeight !== 0) {
+                logoImg.classList.add('loaded');
+            } else {
+                logoImg.addEventListener('load', function() {
+                    this.classList.add('loaded');
+                });
+                
+                logoImg.addEventListener('error', function() {
+                    this.src = 'https://via.placeholder.com/180/0a0a0a/00f7ff?text=RA';
+                    this.classList.add('loaded');
+                });
+                
+                setTimeout(() => {
+                    if (!logoImg.classList.contains('loaded')) {
+                        logoImg.src = 'https://via.placeholder.com/180/0a0a0a/00f7ff?text=RA';
+                        logoImg.classList.add('loaded');
+                    }
+                }, 3000);
+            }
+        }
+
+        function initialize() {
+            CONFIG.animations.enabled = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            
+            init3DBackground().catch(console.error);
+        
+            createParticles();
+            
+            setupCubeInteractions();
+            setupParallax();
+            setupButton();
+            setupImageLoading();
+            
+            setTimeout(() => {
+                document.querySelector('.loading').style.opacity = '1';
+            }, 100);
+        
+            window.addEventListener('resize', handleResize);
+        
+            window.addEventListener('orientationchange', handleResize);
+            
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    if (particles) {
+                        particles.rotation.x = particles.rotation.x;
+                        particles.rotation.y = particles.rotation.y;
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initialize);
+        window.addEventListener('error', (e) => {
+            console.error('Global error:', e.error);
+        });
+
+        window.addEventListener('unhandledrejection', (e) => {
+            console.error('Unhandled promise rejection:', e.reason);
+        });
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(error => {
+                    console.log('ServiceWorker registration failed:', error);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
